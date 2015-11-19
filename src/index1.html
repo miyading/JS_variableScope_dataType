@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    var s = "test";
+    s.len = 4;  //s.len 销毁了
+    var t = s.len;
+    console.log("ding "+t);  //ding undefined
+</script>
+<script>
+    var myvar = "my value";
+    const a = 1;
+
+    (function() {
+        console.log(a); //1
+        console.log(myval); // undefined
+        var myvar = "local value";
+    })();
+</script>
+<script>
+    var m;
+    if(m === undefined){
+        console.log("error");
+        throw (new Error("error message"));
+    } else {
+        console.log("no error")
+    }
+</script>
+<script>
+    var result = "";
+    var obj = {prop1: 5, prop2: 13, prop3: 8};
+    for (var item in obj) {
+        result += "obj" + "." + item + "=" + obj[item] + "   ";
+    }
+    console.log("result " + result);   //result obj.prop1=5   obj.prop2=13   obj.prop3=8
+</script>
+</html>
