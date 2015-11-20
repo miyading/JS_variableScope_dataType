@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    /*事件冒泡: 当一个元素上的事件被触发的时候，比如说鼠标点击了一个按钮，
+    同样的事件将会在那个元素的所有祖先元素中被触发。这一过程被称为事件冒泡；
+    这个事件从原始元素开始一直冒泡到DOM树的最上层。
+     可以用JS来阻止js事件冒泡。因为浏览器的差异IE和FF的JS写法有点不一样。*/
+    function tableclick() {
+        alert("table click")
+    }
+    function trclick() {
+        alert("tr click")
+    }
+    function aaaclick() {
+        alert("td click")
+    }
+    function bbbclick(evt) {
+        alert("td click");
+        if(window.event) {    //IE browser
+            event.cancelBubble = true;
+        } else if (evt) {     //firefox browser
+            evt.stopPropagation();
+        }
+    }
+</script>
+<body>
+<table width="204" onclick="tableclick()" class="tab">
+    <tr >
+        <td width="96"> </td>
+        <td width="96"> </td>
+    </tr>
+    <tr onclick="trclick()">
+        <td onclick="aaaclick()">aaaa</td>
+        <td onclick="bbbclick(event)">bbbbb</td>
+    </tr>
+</table>
+</body>
+</html>

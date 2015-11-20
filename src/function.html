@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*原始参数（比如一个具体的数字）被作为值传递给函数；
+     值被传递给函数，但是如果被调用函数改变了这个参数的值，这样的改变不会影响到全局或调用的函数*/
+    var a = 3;
+    function double(input) {
+        input++;
+        return input;
+    }
+    double(a);
+    console.log(a); //3
+
+    /*如果你传递一个对象（即一个非实际值，例如Array或用户自定义的其它对象）作为参数，
+     而函数改变了这个对象的属性，这样的改变对函数外部是可见的*/
+    var mycar = {make: "Honda", model: "Accord", year: 1998};
+    var x, y;
+    function change(object) {
+        object.make = "ding";
+    }
+    console.log("original " + mycar.make);
+    change(mycar);
+    console.log("after " + mycar.make);
+
+    /*函数表达式在将函数作为一个引数传递给其它函数时十分方便*/
+    var func = function (x) {
+        return x * x
+    };
+    var arr = [2, 4, 6];
+    map(func, arr);
+    function map(f, a) {
+        for (var i = 0; i < a.length; i++) {
+            a[i] = f(a[i]);
+        }
+        console.log(a);
+    }
+
+    function curriedMap(arr) {
+        return function (func) {
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = func(arr[i]);
+            }
+            return arr;
+        }
+    }
+
+    var newArr = curriedMap([1, 2, 3, 4, 5])(func);
+    console.log(newArr);
+
+    /*eval()*/
+    console.log("eval " + eval("2+1"));
+
+    /*一个函数可以指向并调用自身
+     1.通过使用函数名
+     2.使用arguments.callee
+     3.使用作用域下的一个变量名来指向函数
+     var foo = function bar() {
+     bar();
+     foo();
+     arguments.callee();
+     console.log("call the function");
+     };*/
+
+    /*闭包*/
+    console.log("闭包----------");
+    //保护父函数的内部变量，避免被JS的垃圾回收机制回收
+    //由于外部对象无法引用它内部的变量，因此这些变量在函数执行完后很快就会被释放，关键是这种机制不会污染全局对象。
+    function result() {
+        var n = 3;
+        function inside() {
+            n++;
+            alert(n);
+        }
+        return inside;
+    }
+    var func = result();
+    func();  //4
+    func();  //5
+
+    //实现代码的封装和模块化，实现私有变量
+    var people = (function() {
+        var name = "mengli";
+        return {
+            getName: function(){
+                return name;
+            },
+            setName: function(newName) {
+                name = newName;
+            }
+        }
+    })();
+    console.log(people.name);  //undefined
+    console.log(people.getName()); //mengli
+    people.setName("ding");
+    console.log(people.getName()); //ding
+
+
+    //notice!!
+    /*var name = "The Window";
+     var object = {
+     name : "My Object",
+     getNameFunc : function(){
+     return function(){
+     return this.name;
+     };
+     }
+     };
+     alert(object.getNameFunc()());    //The Window*/
+
+    /*var name = "The Window";
+     var object = {
+     name : "My Object",
+     getNameFunc : function(){
+     var that = this;
+     return function(){
+     return that.name;
+     };
+     }
+     };
+     alert(object.getNameFunc()());    //My Object*/
+
+</script>
+</body>
+</html>

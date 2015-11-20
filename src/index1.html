@@ -17,11 +17,20 @@
     var myvar = "my value";
     const a = 1;
 
-    (function() {
+    function vv() {
         console.log(a); //1
-        console.log(myval); // undefined
-        var myvar = "local value";
-    })();
+        console.log(myvar); // undefined
+        var myvar = "mengli";
+    }
+    vv();
+
+    var n=999;
+    var msg="df";
+    function f1(){
+        console.log(n);
+        console.log(msg);
+    }
+    f1();
 </script>
 <script>
     var m;
