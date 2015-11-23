@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    "use strict";
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            console.log("parent " + this.x, +"  " + this.y);
+        }
+    }
+
+    class ColorPoint extends Point {
+        constructor(x, y, color) {
+            super(x, y);
+            this.color = color; // 正确
+            console.log("child " + this.x +"  " + this.y + "  " + this.color);
+        }
+    }
+
+    var cp = new ColorPoint(2, 5, "red");
+
+    let person = new class {
+        constructor(name) {
+            this.name = name;
+        }
+        getName() {
+            console.log(this.name);
+        }
+    }("dingding");
+    person.getName();
+</script>
+</body>
+</html>

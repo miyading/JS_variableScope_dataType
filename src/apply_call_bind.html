@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    /*apply() 接收两个参数，第一个是绑定 this 的值，第二个是一个参数数组，
+    apply() 函数会在调用函数时自动帮你把数组展开。
+    call()呢，它的第一个参数也是绑定给 this 的值，但是后面接受的是不定参数，而不再是一个数组，
+    也就是说你可以像平时给函数传参那样把这些参数一个一个传递。
+    apply(),call()都是立马就调用了对应的函数，bind() 会生成一个新的函数，bind() 函数的参数跟 call() 一致，
+    第一个参数也是绑定 this 的值，后面接受传递给函数的不定参数
+    bind() 生成的新函数返回后，你想什么时候调就什么时候调*/
+    /*var m = {
+        "x" : 1
+    };
+    function foo(y) {
+        alert(this.x + y);
+    }
+    foo.apply(m, [5]);
+    foo.call(m, 5);
+    var foo1 = foo.bind(m, 5);
+    foo1();*/
+
+
+    //---
+    function a(xx, yy) {
+        console.log(xx, yy);
+        console.log(this);
+        console.log(arguments);
+    }
+    a.apply(null, [5, 55]);
+    a.call(null, 5, 55);
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    "use strict";
+    class Person {
+        constructor(name) {
+            this.name = name;
+        }
+
+        walk() {
+            console.log("Person " + this.name + " can walk");
+        }
+    }
+
+    class Student extends Person {
+        constructor(name, score) {
+            super(name);
+            this.score = score;
+            super.walk();
+        }
+
+        test() {
+            console.log("Student " + this.name + " test for " + this.score + " points");
+        }
+    }
+
+    class Teacher extends Person {
+        constructor(name, year) {
+            super(name);
+            this.year = year;
+            super.walk();
+        }
+
+        work() {
+            console.log("Teacher " + this.name + " work for " + this.year + " years");
+        }
+    }
+
+    let person = new Person("mengli");
+    let student = new Student("dingding", 90);
+    let teacher = new Teacher("mama", 10);
+    student.test();
+    teacher.work();
+    Person.prototype.sex = "female";
+    Person.prototype.getSex = function() {
+        return this.sex;
+    }
+    console.log(person.getSex());
+    console.log(student.getSex());
+    console.log(student.__proto__ === Student.prototype);
+    console.log(Student.__proto__ === Person);
+    console.log(Student.prototype.__proto__ === Person.prototype);
+
+</script>
+</body>
+</html>

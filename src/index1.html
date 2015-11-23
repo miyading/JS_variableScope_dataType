@@ -14,9 +14,9 @@
     console.log("ding "+t);  //ding undefined
 </script>
 <script>
+    //变量声明提前
     var myvar = "my value";
     const a = 1;
-
     function vv() {
         console.log(a); //1
         console.log(myvar); // undefined
@@ -24,15 +24,28 @@
     }
     vv();
 
+    //变量作用域
     var n=999;
-    var msg="df";
     function f1(){
+//        msg = "fun";
         console.log(n);
-        console.log(msg);
     }
     f1();
+//    console.log(msg);
+
+    //访问函数内部变量
+    function f1(){
+        var n=999;
+        function f2() {
+           alert(n);
+        }
+        return f2;
+    }
+    var result = f1();
+    result();
 </script>
 <script>
+    //error
     var m;
     if(m === undefined){
         console.log("error");
